@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Drawing;
 using System.Xml.Linq;
 
 namespace Data_Structure_Programs
@@ -9,6 +10,7 @@ namespace Data_Structure_Programs
 
         public void UnorderedListAddRemove(string word)
         {
+            int size = 0;
             bool wordExists = false;
             string readText = File.ReadAllText(filePath);
             string fileData = JsonConvert.DeserializeObject<string>(readText);
@@ -27,7 +29,7 @@ namespace Data_Structure_Programs
                     break;
                 }
             }
-            if(!wordExists)
+            if (!wordExists)
             {
                 Console.WriteLine($"{word} is not exists in List so it will be Addeed to list");
                 list.AddLast(word);
@@ -37,7 +39,6 @@ namespace Data_Structure_Programs
             string combineWords = string.Join(" ", list);
             string writeText = JsonConvert.SerializeObject(combineWords);
             File.WriteAllText(filePath, writeText);
-
         }
     }
 }
