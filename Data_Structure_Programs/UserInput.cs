@@ -8,6 +8,7 @@ namespace Data_Structure_Programs
         {
             Console.WriteLine("Enter - 1. Unordered List ");
             Console.WriteLine("Enter - 2. Ordered List ");
+            Console.WriteLine("Enter - 3. Simple Balanced Parentheses");
 
             Console.Write("\nEnter Selected Number : ");
             int userInput = int.Parse(Console.ReadLine());
@@ -26,6 +27,13 @@ namespace Data_Structure_Programs
                     int number = Convert.ToInt32(Console.ReadLine());
                     OrderedList ordered = new OrderedList();
                     ordered.OrderedLinkedList(number);
+                    break;
+
+                case 3:
+                    Console.Write("Enter the Expression : ");
+                    string expression = Console.ReadLine();
+                    SimpleBalancedParentheses parentheses= new SimpleBalancedParentheses();
+                    parentheses.BalancedParentheses(expression);
                     break;
             }
         }
