@@ -10,6 +10,7 @@ namespace Data_Structure_Programs
             Console.WriteLine("Enter - 2. Ordered List ");
             Console.WriteLine("Enter - 3. Simple Balanced Parentheses");
             Console.WriteLine("Enter - 4. Simulate Banking Cash Counter");
+            Console.WriteLine("Enter - 5. Palindrome Checker");
 
             Console.Write("\nEnter Selected Number : ");
             int userInput = int.Parse(Console.ReadLine());
@@ -42,6 +43,13 @@ namespace Data_Structure_Programs
                     int people = Convert.ToInt32(Console.ReadLine());
                     SimulateBankingCashCounter counter = new SimulateBankingCashCounter();
                     counter.CashCounter(people);
+                    break;
+
+                case 5:
+                    Console.Write("Enter word to check Palindrome or Not : ");
+                    string palindrome = Console.ReadLine();
+                    PalindromeChecker checker = new PalindromeChecker();
+                    checker.CheckPalindrome(palindrome);
                     break;
             }
         }
