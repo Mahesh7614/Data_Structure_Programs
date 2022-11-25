@@ -35,21 +35,21 @@ namespace Data_Structure_Programs
             {
                 Add(word);
             }
-            string[] abc = new string[Size()];
+            string[] joinstring = new string[Size()];
 
-            abc[0] = head.data;
+            joinstring[0] = head.data;
             Node temp = head;
-            for (int i = 1; i < abc.Length; i++)
+            for (int i = 1; i < joinstring.Length; i++)
             {
                 temp = temp.next;
-                abc[i] = temp.data;
+                joinstring[i] = temp.data;
             }
-            string combineWords = string.Join(" ", abc);
+            string combineWords = string.Join(" ", joinstring);
             string writeText = JsonConvert.SerializeObject(combineWords);
             File.WriteAllText(filePath, writeText);
             Console.WriteLine($"\nThe updated Sentence is : \n{combineWords}");
         }
-        public void Add(string data)
+        private void Add(string data)
         {
 
             Node node = new Node(data);
@@ -68,7 +68,7 @@ namespace Data_Structure_Programs
                 temp.next = node;
             }
         }
-        public void DeleteNodeAtPerticularPosition(int position)
+        private void DeleteNodeAtPerticularPosition(int position)
         {
             if (head == null)
             {
@@ -91,7 +91,7 @@ namespace Data_Structure_Programs
             Node next1 = temp.next.next;
             temp.next = next1;
         }
-        public int Search(string value)
+        private int Search(string value)
         {
             int Count = 1;
             Node temp = head;
@@ -106,7 +106,7 @@ namespace Data_Structure_Programs
             }
             return 0;
         }
-        public int Size()
+        private int Size()
         {
             int size = 0;
             Node temp = head;
