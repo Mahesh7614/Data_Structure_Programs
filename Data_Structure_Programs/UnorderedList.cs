@@ -1,44 +1,121 @@
 ﻿using Newtonsoft.Json;
-using System.Drawing;
-using System.Xml.Linq;
 
 namespace Data_Structure_Programs
 {
+    public class Node
+    {
+        public string data;
+        public Node next;
+        public Node(string data)
+        {
+            this.data = data;
+        }
+    }
     public class UnorderedList
     {
-        private string filePath = @"C:\Users\Mahesh\OneDrive\Desktop\Assignments\RFP .Net Assignment\Data_Structure_Programs\Data_Structure_Programs\JasonData.json";
-
+        public Node head;
+        private string filePath = @"C:\Users\Mahesh\OneDrive\Desktop\Assignments\RFP .Net Assignment\Data_Structure_Programs\Data_Structure_Programs\Data\UnorderedList.json";
         public void UnorderedListAddRemove(string word)
         {
-            int size = 0;
-            bool wordExists = false;
             string readText = File.ReadAllText(filePath);
             string fileData = JsonConvert.DeserializeObject<string>(readText);
 
-            Console.WriteLine(fileData);
-            LinkedList<string> list = new LinkedList<string>(fileData.Split(' ').Select(n => (n.Trim())));
+            Console.WriteLine($"The Sentence is : \n{fileData}");
+            string[] wordsArray = fileData.Split(' ');
 
-            foreach (string Words in list)
+            foreach (string item in wordsArray)
             {
-                if (Words == word)
-                {
-                    wordExists = true;
-                    Console.WriteLine($"{word} is exists  in List so it will be Removed from List");
-                    list.Remove(Words);
-                    Console.WriteLine($"{word} Removed Sucessfully from List");
-                    break;
-                }
+                Add(item);
             }
-            if (!wordExists)
+            if (Search(word) > 0)
             {
-                Console.WriteLine($"{word} is not exists in List so it will be Addeed to list");
-                list.AddLast(word);
-                Console.WriteLine($"{word} is successfully Added in the List");
+                DeleteNodeAtPerticularPosition(Search(word));
             }
+            else
+            {
+                Add(word);
+            }
+            string[] abc = new string[Size()];
 
-            string combineWords = string.Join(" ", list);
+            abc[0] = head.data;
+            Node temp = head;
+            for (int i = 1; i < abc.Length; i++)
+            {
+                temp = temp.next;
+                abc[i] = temp.data;
+            }
+            string combineWords = string.Join(" ", abc);
             string writeText = JsonConvert.SerializeObject(combineWords);
             File.WriteAllText(filePath, writeText);
+            Console.WriteLine($"\nThe updated Sentence is : \n{combineWords}");
+        }
+        public void Add(string data)
+        {
+
+            Node node = new Node(data);
+
+            if (head == null)
+            {
+                head = node;
+            }
+            else
+            {
+                Node temp = head;
+                while (temp.next != null)
+                {
+                    temp = temp.next;
+                }
+                temp.next = node;
+            }
+        }
+        public void DeleteNodeAtPerticularPosition(int position)
+        {
+            if (head == null)
+            {
+                return;
+            }
+            Node temp = head;
+            if (position == 1)
+            {
+                head = temp.next;
+                return;
+            }
+            for (int i = 1; temp != null && i < position - 1; i++)
+            {
+                temp = temp.next;
+            }
+            if (temp == null || temp.next == null)
+            {
+                return;
+            }
+            Node next1 = temp.next.next;
+            temp.next = next1;
+        }
+        public int Search(string value)
+        {
+            int Count = 1;
+            Node temp = head;
+            while (temp != null)
+            {
+                if (temp.data.Equals(value))
+                {
+                    return Count;
+                }
+                temp = temp.next;
+                Count++;
+            }
+            return 0;
+        }
+        public int Size()
+        {
+            int size = 0;
+            Node temp = head;
+            while (temp != null)
+            {
+                temp = temp.next;
+                size++;
+            }
+            return size;
         }
     }
 }
