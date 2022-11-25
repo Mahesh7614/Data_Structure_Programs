@@ -9,6 +9,7 @@ namespace Data_Structure_Programs
             Console.WriteLine("Enter - 1. Unordered List ");
             Console.WriteLine("Enter - 2. Ordered List ");
             Console.WriteLine("Enter - 3. Simple Balanced Parentheses");
+            Console.WriteLine("Enter - 4. Simulate Banking Cash Counter");
 
             Console.Write("\nEnter Selected Number : ");
             int userInput = int.Parse(Console.ReadLine());
@@ -34,6 +35,13 @@ namespace Data_Structure_Programs
                     string expression = Console.ReadLine();
                     SimpleBalancedParentheses parentheses= new SimpleBalancedParentheses();
                     parentheses.BalancedParentheses(expression);
+                    break;
+
+                case 4:
+                    Console.Write("Enter the Number of People in Queue : ");
+                    int people = Convert.ToInt32(Console.ReadLine());
+                    SimulateBankingCashCounter counter = new SimulateBankingCashCounter();
+                    counter.CashCounter(people);
                     break;
             }
         }
