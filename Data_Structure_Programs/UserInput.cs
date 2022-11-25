@@ -11,6 +11,8 @@ namespace Data_Structure_Programs
             Console.WriteLine("Enter - 3. Simple Balanced Parentheses");
             Console.WriteLine("Enter - 4. Simulate Banking Cash Counter");
             Console.WriteLine("Enter - 5. Palindrome Checker");
+            Console.WriteLine("Enter - 7. No of Binary search Tress");
+
 
             Console.Write("\nEnter Selected Number : ");
             int userInput = int.Parse(Console.ReadLine());
@@ -50,6 +52,13 @@ namespace Data_Structure_Programs
                     string palindrome = Console.ReadLine();
                     PalindromeChecker checker = new PalindromeChecker();
                     checker.CheckPalindrome(palindrome);
+                    break;
+
+                case 7:
+                    Console.Write("Enter No of elements in BST : ");
+                    int noOfTress = Convert.ToInt32(Console.ReadLine());
+                    NoOfBST bST = new NoOfBST();
+                    Console.Write("No of tress to be formed are : " + bST.NumberOfTree(noOfTress));
                     break;
             }
         }
