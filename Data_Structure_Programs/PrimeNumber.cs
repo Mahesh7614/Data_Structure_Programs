@@ -39,15 +39,22 @@ namespace Data_Structure_Programs
                     index++;
                 }
             }
+            int a = 0, b = 100;
             for (int k = 0; k < 10; k++)
             {
                 for (int l = 0; l < 100; l++)
                 {
                     if (primeNumbers[k, l] != 0)
                     {
-                        Console.WriteLine(primeNumbers[k, l]);
+                            Console.WriteLine(primeNumbers[k, l]);
+                        
                     }
                 }
+
+                Console.WriteLine($"******************** Prime Numbers from {a} to {b} ********************");
+                a= 0;
+                 a= a+b;
+                b= b+100;
             }
 
         }

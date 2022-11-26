@@ -4,10 +4,10 @@
     {
         static void Main(string[] args)
         {
-            //UserInput user = new UserInput();
-            //user.UserInputForPrograms();
-            PrimeNumber prime = new PrimeNumber();
-            prime.PrimeChecker();
+            UserInput user = new UserInput();
+            user.UserInputForPrograms();
+            //PrimeNumber prime = new PrimeNumber();
+            //prime.PrimeChecker();
 
         }
     }
