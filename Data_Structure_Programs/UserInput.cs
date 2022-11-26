@@ -11,6 +11,7 @@ namespace Data_Structure_Programs
             Console.WriteLine("Enter - 3. Simple Balanced Parentheses");
             Console.WriteLine("Enter - 4. Simulate Banking Cash Counter");
             Console.WriteLine("Enter - 5. Palindrome Checker");
+            Console.WriteLine("Enter - 6. Hash Table");
             Console.WriteLine("Enter - 7. No of Binary search Tress");
 
 
@@ -52,6 +53,14 @@ namespace Data_Structure_Programs
                     string palindrome = Console.ReadLine();
                     PalindromeChecker checker = new PalindromeChecker();
                     checker.CheckPalindrome(palindrome);
+                    break;
+
+                case 6:
+                    HashTableData hashTable = new HashTableData();
+                    Console.WriteLine("Enter the number to search:");
+                    string searchValue = Console.ReadLine();
+                    hashTable.HashData(searchValue);
+                    hashTable.DisplayHashTable();
                     break;
 
                 case 7:
