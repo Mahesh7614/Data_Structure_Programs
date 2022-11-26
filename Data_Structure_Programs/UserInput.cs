@@ -13,6 +13,7 @@ namespace Data_Structure_Programs
             Console.WriteLine("Enter - 5. Palindrome Checker");
             Console.WriteLine("Enter - 6. Hash Table");
             Console.WriteLine("Enter - 7. No of Binary search Tress");
+            Console.WriteLine("Enter - 8. Prime Numbers 1-1000");
 
 
             Console.Write("\nEnter Selected Number : ");
@@ -68,6 +69,12 @@ namespace Data_Structure_Programs
                     int noOfTress = Convert.ToInt32(Console.ReadLine());
                     NoOfBST bST = new NoOfBST();
                     Console.Write("No of tress to be formed are : " + bST.NumberOfTree(noOfTress));
+                    break;
+
+                case 8:
+                    PrimeNumber prime = new PrimeNumber();
+                    prime.PrimeRange();
+                    prime.Print();
                     break;
             }
         }

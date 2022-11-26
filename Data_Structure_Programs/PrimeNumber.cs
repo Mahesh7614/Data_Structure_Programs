@@ -3,60 +3,63 @@ namespace Data_Structure_Programs
 {
     public class PrimeNumber
     {
-        public void PrimeChecker()
+        public int[,] primeNum = new int[10, 100];
+        public void PrimeRange()
         {
-            int start = 0, end = 1000;
-            int range = 0, index = 0, change = 0;
-
-            int[,] primeNumbers = new int[10, 100];
-            Console.WriteLine("\n---------------- Printing Prime Number in Range ({0} - {1}) ----------------", start, end);
-            for (int i = start + 1; i <= end; i++)
+            int num = 2;
+            for (int i = 0; i < 10; i++)
             {
-                if (i > 100)
+                for (int j = 1; j < 100; j++)
                 {
-                    string temp = Convert.ToString(i);
-                    char ind = temp[0];
-                    range = Convert.ToInt32(ind) - 48;
-
-                }
-                if (change != range)
-                {
-                    index = 0;
-                    change = range;
-                }
-                int flag = 0;
-                for (int j = start; j < i; j++)
-                {
-                    if (i != 0 && i != 1 && j != 0 && j != 1 && (i % 2 == 0 || i % j == 0))
+                    if (IsPrime(num))
                     {
-                        flag = 1;
-                        break;
+                        primeNum[i, j] = num;
                     }
-                }
-                if (i != 1 && (flag != 1 || i == 2))
-                {
-                    primeNumbers[range, index] = i;
-                    index++;
+                    num++;
                 }
             }
-            int a = 0, b = 100;
-            for (int k = 0; k < 10; k++)
+        }
+        public void Print()
+        {
+            int startRange = 1, endRange = 100; ;
+            for (int i = 0; i < 10; i++)
             {
-                for (int l = 0; l < 100; l++)
+                Console.WriteLine($"******************** Prime Numbers from {startRange} to {endRange} ********************");
+                for (int j = 0; j < 100; j++)
                 {
-                    if (primeNumbers[k, l] != 0)
+                    if (primeNum[i, j] != 0)
                     {
-                            Console.WriteLine(primeNumbers[k, l]);
-                        
+                        Console.WriteLine(primeNum[i, j]);
                     }
                 }
-
-                Console.WriteLine($"******************** Prime Numbers from {a} to {b} ********************");
-                a= 0;
-                 a= a+b;
-                b= b+100;
+                startRange = 0;
+                startRange = startRange + endRange;
+                endRange = endRange + 100;
             }
+        }
+        public bool IsPrime(int i)
+        {
+            int j, flag;
+            bool findPrime = false;
 
+            if (i == 1 || i == 0)
+                findPrime = false;
+
+            flag = 1;
+
+            for (j = 2; j <= i / 2; ++j)
+            {
+                if (i % j == 0)
+                {
+                    flag = 0;
+                    break;
+                }
+            }
+            if (flag == 1)
+            {
+                findPrime = true;
+            }
+            return findPrime;
         }
     }
 }
