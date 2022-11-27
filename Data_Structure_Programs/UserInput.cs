@@ -85,11 +85,12 @@ namespace Data_Structure_Programs
                     int year = Convert.ToInt32(Console.ReadLine());
                     Console.Write("Enter the month in Numbers : ");
                     int month = Convert.ToInt32(Console.ReadLine());
-                    Calender calender = new Calender();
+                    Calenders calender = new Calenders();
                     calender.GetCalendar(year, month);
                     calender.PrintCalendar(year, month);
                     Console.WriteLine("\n***************************** Display calendar using queue *****************************");
                     calender.DisplayCalendarUsingQueue(year, month);
+                    calender.StackImplementation(year, month);
                     break;
             }
         }

@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Globalization;
 
 namespace Data_Structure_Programs
@@ -33,6 +34,34 @@ namespace Data_Structure_Programs
 
             }
         }
+        public CalendarWeek<T> GetLastNode()
+        {
+            CalendarWeek<T> temp = head;
+            while (temp.next != null)
+            {
+                temp = temp.next;
+            }
+            return temp;
+        }
+        public void Append(CalendarWeek<T> newNode)
+        {
+            if (head == null)
+            {
+                head = newNode;
+            }
+            else
+            {
+                CalendarWeek<T> temp = GetLastNode();
+                temp.next = newNode;
+
+            }
+        }
+        public CalendarWeek<T> DeQueue(CalendarWeek<T> stack)
+        {
+            CalendarWeek<T> temp = head;
+            stack.InsertAtLast(temp);
+            return stack;
+        }
         public void DisplayWeek()
         {
             CalendarWeek<T> temp = head;
@@ -60,10 +89,11 @@ namespace Data_Structure_Programs
             Console.WriteLine("\n");
         }
     }
-    public class Calender
+    public class Calenders
     {
         private int[,] calendar = new int[6, 7];
         private Queue<CalendarWeek<Calendar>> weekQueue = new Queue<CalendarWeek<Calendar>>();
+        public Queue<CalendarWeek<Calendar>> Stackqueue = new Queue<CalendarWeek<Calendar>>();
         public void GetCalendar(int year, int month)
         {
             DateTime date = new DateTime(year, month, 1);
@@ -72,7 +102,8 @@ namespace Data_Structure_Programs
             var dayOfWeek = (int)date.DayOfWeek;
             for (int i = 0; i < calendar.GetLength(0); i++)
             {
-                CalendarWeek<Calendar> cal = new CalendarWeek<Calendar>();
+                CalendarWeek<Calendar> weekDayQueue = new CalendarWeek<Calendar>();
+                CalendarWeek<Calendar> StackQueue = new CalendarWeek<Calendar>();
                 for (int j = 0; j < calendar.GetLength(1) && currentDay - dayOfWeek + 1 <= days; j++)
                 {
                     if (i == 0 && month > j)
@@ -83,11 +114,14 @@ namespace Data_Structure_Programs
                     {
                         calendar[i, j] = currentDay - dayOfWeek + 1;
                         CalendarWeek<Calendar> calenderObj = new CalendarWeek<Calendar>(calendar[i, j]);
-                        cal.InsertAtLast(calenderObj);
+                        CalendarWeek<Calendar> calenderObjForStack = new CalendarWeek<Calendar>(calendar[i, j]);
+                        weekDayQueue.Append(calenderObj);
+                        StackQueue.InsertAtLast(calenderObjForStack);
                         currentDay++;
                     }
                 }
-                weekQueue.Enqueue(cal);
+                weekQueue.Enqueue(weekDayQueue);
+                Stackqueue.Enqueue(StackQueue);
             }
         }
         public void PrintCalendar(int year, int month)
@@ -117,6 +151,23 @@ namespace Data_Structure_Programs
                     }
                 }
                 Console.WriteLine("");
+            }
+        }
+        public void StackImplementation(int year, int month)
+        {
+            int n = Stackqueue.Count;
+            for (int i = 0; i < n; i++)
+            {
+                CalendarWeek<Calendar> StackQueue = new CalendarWeek<Calendar>();
+                Stackqueue.Dequeue().DeQueue(StackQueue);
+                Stackqueue.Enqueue(StackQueue);
+            }
+            Console.WriteLine("***** Queue using Two Stacks for week objects *****");
+            Console.WriteLine($"{CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)} {year}");
+            Console.WriteLine("Mon Tue Wed Thu Fri Sat Sun");
+            foreach (var i in Stackqueue)
+            {
+                i.DisplayWeek();
             }
         }
         public void DisplayCalendarUsingQueue(int year, int month)
