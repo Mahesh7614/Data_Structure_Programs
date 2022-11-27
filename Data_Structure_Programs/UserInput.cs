@@ -88,6 +88,8 @@ namespace Data_Structure_Programs
                     Calender calender = new Calender();
                     calender.GetCalendar(year, month);
                     calender.PrintCalendar(year, month);
+                    Console.WriteLine("\n***************************** Display calendar using queue *****************************");
+                    calender.DisplayCalendarUsingQueue(year, month);
                     break;
             }
         }
