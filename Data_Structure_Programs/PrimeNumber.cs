@@ -3,8 +3,84 @@ using System;
 
 namespace Data_Structure_Programs
 {
+    public class Node2
+    {
+        public int data;
+        public Node2 next;
+        public Node2(int data)
+        {
+            this.data = data;
+        }
+    }
+    public class LinkedList
+    {
+        public Node2 head;
+        public int Add(int data)
+        {
+
+            Node2 node = new Node2(data);
+
+            if (head == null)
+            {
+                head = node;
+            }
+            else
+            {
+                Node2 temp = head;
+                while (temp.next != null)
+                {
+                    temp = temp.next;
+                }
+                temp.next = node;
+            }
+            return data;
+        }
+        public void SortedLinkedList(int data)
+        {
+            Node2 temp = head, index = null;
+
+            if (head == null)
+            {
+                return;
+            }
+            else
+            {
+                while (temp != null)
+                {
+                    index = temp.next;
+
+                    while (index != null)
+                    {
+                        if (temp.data < index.data)
+                        {
+                            data = temp.data;
+                            temp.data = index.data;
+                            index.data = data;
+                        }
+                        index = index.next;
+                    }
+                    temp = temp.next;
+                }
+            }
+        }
+        public void Display()
+        {
+            Node2 temp = head;
+
+            if (temp == null)
+            {
+                Console.WriteLine("LinkedList is Empty");
+            }
+            while (temp != null)
+            {
+                Console.WriteLine(temp.data);
+                temp = temp.next;
+            }
+        }
+    }
     public class PrimeNumber
     {
+        LinkedList list = new LinkedList();
         public int[,] primeNum = new int[10, 100];
         int[,] anagram = new int[10, 100];
         public int[,] notAnagramNumbers = new int[10, 100];
@@ -56,7 +132,9 @@ namespace Data_Structure_Programs
                                 if (CheckAnagram(primeNum[i, j], primeNum[k, q]))
                                 {
                                     anagram[k, q] = primeNum[i, j];
+                                    list.SortedLinkedList(list.Add(primeNum[i, j]));
                                     anagram[i, j] = primeNum[k, q];
+                                    list.SortedLinkedList(list.Add(primeNum[k, q]));
                                     break;
                                 }
 
@@ -65,18 +143,8 @@ namespace Data_Structure_Programs
                     }
                 }
             }
-            Console.WriteLine("\n---------------- Printing Anagram Prime Numbers in Range (10 - 1000) ----------------");
-            for (int k = 0; k < 10; k++)
-            {
-                for (int l = 0; l < 100; l++)
-                {
-                    if (anagram[k, l] != 0)
-                    {
-                        Console.WriteLine(anagram[k, l]);
-                    }
-
-                }
-            }
+            Console.WriteLine("\n---------------- Printing Anagram Prime Numbers Rverese order in Range (1 - 1000) ----------------");
+            list.Display();
         }
         public void PrintNotAnagramNumbers()
         {
