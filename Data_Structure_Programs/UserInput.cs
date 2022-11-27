@@ -14,6 +14,7 @@ namespace Data_Structure_Programs
             Console.WriteLine("Enter - 6. Hash Table");
             Console.WriteLine("Enter - 7. No of Binary search Tress");
             Console.WriteLine("Enter - 8. Prime Numbers 1-1000");
+            Console.WriteLine("Enter - 9. Calender");
 
 
             Console.Write("\nEnter Selected Number : ");
@@ -77,6 +78,16 @@ namespace Data_Structure_Programs
                     prime.PrintPrimeNumbers();
                     prime.PrintAnagramNumbers();
                     prime.PrintNotAnagramNumbers();
+                    break;
+
+                case 9:
+                    Console.Write("Enter the year : ");
+                    int year = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter the month in Numbers : ");
+                    int month = Convert.ToInt32(Console.ReadLine());
+                    Calender calender = new Calender();
+                    calender.GetCalendar(year, month);
+                    calender.PrintCalendar(year, month);
                     break;
             }
         }
