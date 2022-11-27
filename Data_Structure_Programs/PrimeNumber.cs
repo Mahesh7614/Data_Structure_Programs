@@ -78,9 +78,42 @@ namespace Data_Structure_Programs
             }
         }
     }
+    public class Queue
+    {
+        Node2 front;
+        Node2 rear;
+
+        public void Enqueue(int data)
+        {
+            Node2 newNode = new Node2(data);
+            if (this.rear == null)
+            {
+                this.front = this.rear = newNode;
+            }
+            else
+            {
+                this.rear.next = newNode;
+                this.rear = newNode;
+            }
+        }
+        public void Display()
+        {
+            Node2 temp = front;
+            if (temp == null)
+            {
+                Console.WriteLine("Stack is Empty");
+            }
+            while (temp != null)
+            {
+                Console.WriteLine(temp.data);
+                temp = temp.next;
+            }
+        }
+    }
     public class PrimeNumber
     {
         LinkedList list = new LinkedList();
+        Queue queue = new Queue();
         public int[,] primeNum = new int[10, 100];
         int[,] anagram = new int[10, 100];
         public int[,] notAnagramNumbers = new int[10, 100];
@@ -133,8 +166,10 @@ namespace Data_Structure_Programs
                                 {
                                     anagram[k, q] = primeNum[i, j];
                                     list.SortedLinkedList(list.Add(primeNum[i, j]));
+                                    queue.Enqueue(primeNum[i, j]);
                                     anagram[i, j] = primeNum[k, q];
                                     list.SortedLinkedList(list.Add(primeNum[k, q]));
+                                    queue.Enqueue(primeNum[k, q]);
                                     break;
                                 }
 
@@ -143,12 +178,15 @@ namespace Data_Structure_Programs
                     }
                 }
             }
-            Console.WriteLine("\n---------------- Printing Anagram Prime Numbers Rverese order in Range (1 - 1000) ----------------");
+            Console.WriteLine("\n---------------- Display Anagram Prime Numbers Rverese order using stack in Range (1 - 1000) ----------------");
             list.Display();
+            Console.WriteLine("\n---------------- Display Anagram Prime Numbers using Queue in Range (1 - 1000) ----------------");
+            queue.Display();
+
         }
         public void PrintNotAnagramNumbers()
         {
-            Console.WriteLine("\n---------------- Printing Not Anagram Prime Numbers in Range (1 - 1000) ----------------");
+            Console.WriteLine("\n---------------- Display Not Anagram Prime Numbers in Range (1 - 1000) ----------------");
             int check = 0; 
             for (int i = 0; i < 10; i++)
             {
