@@ -74,7 +74,9 @@ namespace Data_Structure_Programs
                 case 8:
                     PrimeNumber prime = new PrimeNumber();
                     prime.PrimeRange();
-                    prime.Print();
+                    prime.PrintPrimeNumbers();
+                    prime.PrintAnagramNumbers();
+                    prime.PrintNotAnagramNumbers();
                     break;
             }
         }
